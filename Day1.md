@@ -1,7 +1,8 @@
 Question: List all unique hospital services available in the hospital.
+
 Select distinct services from hospital_services;
 
-ervice
+service
 ------------------
  general_medicine
  surgery
