@@ -2,7 +2,10 @@ Challenge Question: Create a comprehensive hospital performance dashboard using 
 Service-level metrics (total admissions, refusals, avg satisfaction),
  Staff metrics per service (total staff, avg weeks present),
  Patient demographics per service (avg age, count). Then combine all three CTEs to create a final report showing service name, all calculated metrics,
- and an overall performance score (weighted average of admission rate and satisfaction). Order by performance score descending.WITHservice_metrics AS
+ and an overall performance score (weighted average of admission rate and satisfaction). Order by performance score descending.
+ 
+ query: 
+ WITHservice_metrics AS
  (   SELECT    service, SUM(patients_admitted) AS total_admissions, SUM(patients_refused) AS total_refusals, AVG(patient_satisfaction) AS avg_satisfaction
  FROM services_weekly    GROUP BY service),staff_metrics AS (SELECT  s.service,  COUNT(DISTINCT s.staff_id) AS total_staff, AVG(weekly_presence.weeks_present) AS avg_weeks_present
 FROM staff s    LEFT JOIN (        SELECT             staff_id,            COUNT(week) AS weeks_present        FROM staff_schedule        WHERE present = 1        GROUP BY staff_id  )
